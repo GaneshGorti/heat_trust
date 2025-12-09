@@ -219,7 +219,7 @@ geonames_zip_country_subset$postal_code
 #This seems to be lack of matching data in geonames rather than because of how they are written. Manually cross-checked these codes. 
 #Checking what zipcodes from India did not find a match 
 
-#Check all Brazil zip codes in unmatched
+#Check all India zip codes in unmatched
 fighting_climate_geo_unmatched_in <- fighting_climate_geo_unmatched %>%
   filter(country == "IN")
 fighting_climate_geo_unmatched_in$zipcode
