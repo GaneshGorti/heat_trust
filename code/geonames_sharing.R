@@ -12,7 +12,7 @@ library(tidyverse)
 library(sf)
 library(here)
 
-#Importing fighting climate change data
+#Importing fighting climate change data from the AER paper
 fighting_climate_data <- read_dta(here("data", "fighting_climate_change", "all.dta"))
 
 table(fighting_climate_data$country)
