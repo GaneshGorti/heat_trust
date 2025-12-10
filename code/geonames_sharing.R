@@ -110,8 +110,8 @@ fighting_climate_data_geo <- fighting_climate_data %>%
 
 table(geonames_zip_unique$country_code)
 
-#Convert to sf POINTS ----
-# 1. Split into matched vs unmatched ZIPs
+#Convert to sf points
+#Split into matched vs unmatched ZIPs
 fighting_climate_geo_split <- fighting_climate_data_geo %>%
   mutate(has_coords = !is.na(lat) & !is.na(lon))
 
@@ -126,13 +126,13 @@ table(fighting_climate_geo_unmatched$country)
 #How many didn't match?
 table(fighting_climate_geo_split$has_coords)
 
-#Subsetting unmatched to CN only
+#Subsetting unmatched to CN only --- change the country to check every country with high unmatched
 fighting_climate_geo_unmatched_cn <- fighting_climate_geo_unmatched %>%
   filter(country == "CN")
 
 fighting_climate_geo_unmatched_cn$zipcode
 
-#Checking zipcodes of countries with high no matches  
+#Checking zipcodes in geonames dataset of countries with high no matches  
 geonames_zip_country_subset <- geonames_zip_unique %>%
   filter(country_code == "JP")
 
@@ -181,8 +181,8 @@ fighting_climate_data_geo <- fighting_climate_data %>%
            "zipcode" = "postal_code")
   )
 
-#Convert to sf POINTS ----
-# 1. Split into matched vs unmatched ZIPs
+#Convert to sf points again after the above corrections
+#Split into matched vs unmatched ZIPs
 fighting_climate_geo_split <- fighting_climate_data_geo %>%
   mutate(has_coords = !is.na(lat) & !is.na(lon))
 
@@ -195,7 +195,7 @@ fighting_climate_geo_unmatched <- fighting_climate_geo_split %>%
 table(fighting_climate_geo_unmatched$country)
 table(fighting_climate_data$country)
 
-#Calculating proportion of unmatched by country
+#Calculating proportion of unmatched by country after corrections
 fighting_climate_data_prop_unmatched <- fighting_climate_geo_split %>%
   group_by(country) %>%
   summarise(
